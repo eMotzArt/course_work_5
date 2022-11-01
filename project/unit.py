@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 from .equipment import Weapon, Armor
 from .classes import Character, class_list
-from .equipment import EquipHelper
+from .equipment import equip_helper
 from .informer import Informer
 from .ingame_exceptions import GameOverError
 
@@ -67,8 +67,8 @@ class Hero(BaseUnit):
         self.unit_class = class_list[role]
         self._health_points = self.unit_class.max_health
         self._stamina_points = self.unit_class.max_stamina
-        self.weapon = EquipHelper().get_weapon(weapon)
-        self.armor = EquipHelper().get_armor(armor)
+        self.weapon = equip_helper.get_weapon(weapon)
+        self.armor = equip_helper.get_armor(armor)
         self.is_skill_used = False
         self.is_dead = False
 
@@ -92,10 +92,10 @@ class Hero(BaseUnit):
             raise GameOverError
 
     def equip_weapon(self, weapon_name: str):
-        self.weapon = EquipHelper().get_weapon(weapon_name)
+        self.weapon = equip_helper.get_weapon(weapon_name)
 
     def equip_armor(self, armor_name: str):
-        self.armor = EquipHelper().get_armor(armor_name)
+        self.armor = equip_helper.get_armor(armor_name)
 
     def _calc_damage(self):
         damage_raw = random.uniform(self.weapon.min_damage, self.weapon.max_damage)

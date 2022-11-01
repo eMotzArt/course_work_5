@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from project import Informer, EquipHelper, class_list, Hero, Enemy, Arena, GameOverError
+from project import Informer, equip_helper, class_list, Hero, Enemy, Arena, GameOverError
 
 main_blueprint = Blueprint('main', __name__, template_folder='./templates/')
 
@@ -15,8 +15,8 @@ def hero_choose():
     export_info = {
             'header': 'Выберите героя',
             'classes': class_list,
-            'weapons': EquipHelper().get_weapon_names(),
-            'armors': EquipHelper().get_armor_names()
+            'weapons': equip_helper.get_weapon_names(),
+            'armors': equip_helper.get_armor_names()
     }
     return render_template('hero_chosing.html', result=export_info)
 
@@ -30,8 +30,8 @@ def enemy_choose():
         export_info = {
             'header': 'Выберите соперника',
             'classes': class_list.keys(),
-            'weapons': EquipHelper().get_weapon_names(),
-            'armors': EquipHelper().get_armor_names()
+            'weapons': equip_helper.get_weapon_names(),
+            'armors': equip_helper.get_armor_names()
         }
         return render_template('hero_chosing.html', result=export_info)
 

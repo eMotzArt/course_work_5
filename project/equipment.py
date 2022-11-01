@@ -55,3 +55,5 @@ class EquipHelper:
 
     def get_armor_names(self) -> list[str]:
         return [armor.name for armor in self.equipments.armors]
+
+equip_helper = EquipHelper()
